@@ -53,14 +53,8 @@ class CategoryContainer extends React.Component {
   render() {
     return (
       <div className='category-container'>
-        {this.state.sections.map(({ id, title, subtitle, imageUrl, size }) => (
-          <CategoryItem
-            key={id}
-            title={title.toUpperCase()}
-            subtitle={subtitle}
-            imageUrl={imageUrl}
-            size={size}
-          />
+        {this.state.sections.map(({ id, ...otherSelectionProps }) => (
+          <CategoryItem key={id} {...otherSelectionProps} />
         ))}
       </div>
     );
