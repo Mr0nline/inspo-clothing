@@ -1,0 +1,28 @@
+.category-item {
+    .label-container {
+    height: 90px;
+    padding: 0 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    background-color: white;
+    opacity: 0.75;
+    position: absolute;
+
+    .label-title {
+        font-family: 'Montserrat';
+        font-weight: 900;
+        margin-bottom: 10px;
+        font-size: 28px;
+        color: #4a4a4a;
+    }
+
+    .label-subtitle {
+        font-weight: normal;
+        font-size: 16px;
+        color: #5c5c5c;
+    }
+}
+}
