@@ -2,7 +2,7 @@
   "name": "inspo-clothing",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://mr0nline.github.io/inspo-clothing-live/",
+  "homepage": "https://mr0nline.github.io/inspo-clothing/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
