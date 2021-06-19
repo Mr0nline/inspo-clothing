@@ -3,6 +3,10 @@ import './sign-in.styles.scss';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 class SignIn extends React.Component {
 	constructor(props) {
@@ -18,10 +22,13 @@ class SignIn extends React.Component {
 		event.preventDefault();
 		const { email, password } = this.state;
 		try {
-			await auth.signInWithEmailAndPassword( email, password )
+			await auth.signInWithEmailAndPassword(email, password);
 			this.setState({ email: '', password: '' });
+			toast.success('Log in successful!', {
+				autoClose: 3000,
+			});
 		} catch (error) {
-			console.log('Error while logging.. ', error.message)
+			toast.error(error.message, { autoClose: 5000 });
 		}
 	};
 
@@ -55,7 +62,10 @@ class SignIn extends React.Component {
 					/>
 					<div className='buttons'>
 						<CustomButton type='submit'>Sign in</CustomButton>
-						<CustomButton type='button' onClick={signInWithGoogle} isGoogleSignIn>
+						<CustomButton
+							type='button'
+							onClick={signInWithGoogle}
+							isGoogleSignIn>
 							Sign with Google
 						</CustomButton>
 					</div>

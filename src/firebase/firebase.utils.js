@@ -1,6 +1,10 @@
 import firebase from 'firebase';
 import 'firebase/firestore';
 import 'firebase/auth';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 
 const config = {
 	apiKey: 'AIzaSyDqYZpI_kO_ks6vgFa-Sv8hf8gPg7DLLfs',
@@ -25,10 +29,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 				displayName,
 				email,
 				createdTime,
-				...additionalData
+				...additionalData,
 			});
 		} catch (error) {
-			console.log('Error in creation! ', error.message);
+			toast.error(error.message, { autoClose: 5000 });
+			// console.log('Error in creation! ', error.message);
 		}
 	}
 
@@ -42,6 +47,13 @@ export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
-export const signInWithGoogle = () => auth.signInWithPopup(provider);
+export const signInWithGoogle = async () => {
+	try {
+		await auth.signInWithPopup(provider);
+		toast.success("You've logged in via Google!", { autoClose: 5000 });
+	} catch (error) {
+		toast.error(error.message, { autoClose: 5000 });
+	}
+};
 
 export default firebase;
